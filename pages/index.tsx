@@ -1,14 +1,20 @@
 import React from 'react'
 
-import MainLayout from '~views/layouts/Main'
+import MainLayout from '~viewsLay/Main'
 
-import { useMutation, useQuery } from '@apollo/react-hooks'
+//UI COMPONENTS
+import Select from '~viewsUi/Select'
+import Button from '~viewsUi/Button'
+import Input from '~viewsUi/Input'
 
-import { SEARCH_USERS } from '~graphqlM/users'
+//FETCHING
+import { useQuery } from '@apollo/react-hooks'
+
 import { GET_USER } from '~graphqlQ/users'
 
 const Home = () => {
-  const [toggleTodo] = useMutation(SEARCH_USERS, { variables: { id: 2 } })
+  const selectOptions = ['login', 'name', 'email']
+
   const { loading, error, data }: any = useQuery(GET_USER, {
     variables: { login: 'gaearon' },
   })
@@ -16,9 +22,25 @@ const Home = () => {
   if (error) console.log(error)
   if (loading) return <p>Loading ...</p>
   console.log(data)
+
   return (
     <MainLayout title={`Home Page`}>
-      <div></div>
+      <div className="mainCont">
+        <div className="top">
+          <div className="top__header">
+            <h1 className="header--medium">Search Dashboard</h1>
+            <div className="top__header__select">
+              <span>Search By</span>
+              <Select placeholderText="Search by" options={selectOptions} />
+            </div>
+          </div>
+
+          <div className="top__inputs">
+            <Input placeholderText={'Search for...'} />
+            <Button>Search</Button>
+          </div>
+        </div>
+      </div>
     </MainLayout>
   )
 }

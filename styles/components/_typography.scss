@@ -1,0 +1,9 @@
+.header--medium {
+  font-weight: $semi-bold;
+  letter-spacing: -0.018em;
+  text-shadow: 0 0 0.58em rgba($white_3, 0.13);
+  background: linear-gradient($white_5, #f2f1fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.96;
+}

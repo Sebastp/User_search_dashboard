@@ -1,7 +1,7 @@
 const { describe, it, expect } = global
 
-describe('Testing sql operations', () => {
-  it('example test', () => {
+describe('Select/Dropdown', () => {
+  it("should return dan's object", () => {
     expect(true).toEqual(true)
   })
 })

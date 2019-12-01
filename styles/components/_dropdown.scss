@@ -1,0 +1,103 @@
+.dropdownWrapper {
+  border-radius: 7px;
+  border: transparent 1px solid;
+  transition: border-color 0.15s, background 0.15s, color 0.17s;
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  cursor: pointer;
+  width: 130px;
+  user-select: none;
+
+  .dropdown__top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    &__label {
+      transition: color 0.3s;
+      flex: 1;
+      font-weight: $semi-bold;
+      color: rgba($grey_2, 0.5);
+      font-size: rem(14px);
+      user-select: none;
+
+      &:hover {
+        transition: color 0.3s;
+        color: rgba($grey_2, 0.9);
+      }
+    }
+
+    &__arrow {
+      float: right;
+    }
+
+    &:hover {
+      .dropdown__top__label {
+        transition: color 0.3s, text-shadow 0.35s;
+        color: rgba($grey_2, 0.88);
+        text-shadow: 0 0 0.3em rgba($grey_2, 0.25);
+      }
+
+      .dropdown__top__arrow {
+        opacity: 0.75;
+        filter: drop-shadow(0 0 10px rgba($grey_border, 0.6));
+
+        &:active {
+          opacity: 0.9;
+          transition: opacity 0.15;
+        }
+      }
+    }
+  }
+
+  .dropdown__panel {
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    box-sizing: border-box;
+    background-color: $inputBck;
+    padding: 15px 25px;
+    border-radius: 5px;
+    width: 100%;
+    bottom: -9px;
+    right: 0;
+    transform: translateY(100%);
+    transition: bottom 0.2s, opacity 0.25s;
+    box-shadow: 1px 3px 6px 0 rgba($black, 0.1);
+
+    li {
+      letter-spacing: -0.01em;
+      font-size: rem(14px);
+      color: rgba($white_2, 0.4);
+      cursor: pointer;
+
+      &.active {
+        color: rgba($white_2, 0.89);
+
+        &:hover {
+          color: rgba($white_2, 0.92);
+          transition: color 0.28s, text-shadow 0.3s;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      &:hover {
+        color: rgba($white_2, 0.7);
+        transition: color 0.28s, text-shadow 0.3s;
+      }
+    }
+  }
+
+  &.opened {
+    .dropdown__panel {
+      bottom: -11px;
+      opacity: 1;
+      transition: bottom 0.2s, opacity 0.25s;
+    }
+  }
+}

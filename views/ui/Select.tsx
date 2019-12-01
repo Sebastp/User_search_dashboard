@@ -1,5 +1,10 @@
 import React, { useState, useRef } from 'react'
+import { useMutation, useQuery } from '@apollo/react-hooks'
+
 import { useOnClickOutside } from '~lib/useOnClickOutside'
+
+import { CHANGE_SELECTED } from '~graphqlM/users'
+import { GET_CURRENT_SELECTED } from '~graphqlQ/users'
 
 type DropdownProps = {
   placeholderText: string
@@ -8,20 +13,25 @@ type DropdownProps = {
 
 const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
   const [isOpened, setIsOpened] = useState(false),
-    [selected, setSelected] = useState(),
+    [changeSelected] = useMutation(CHANGE_SELECTED),
+    {
+      data: { currentSelected },
+    } = useQuery(GET_CURRENT_SELECTED),
     drpWrapper = useRef()
 
-  const changeSelect = (k: number) => {
-    if (selected != k) {
+  const handleLiClick = (toSelect: number) => {
+    console.log(currentSelected)
+    if (currentSelected != toSelect) {
+      changeSelected({
+        variables: { toSelect },
+      })
       toggleList()
-      setSelected(k)
     }
   }
 
   const toggleList = () => {
     setIsOpened(!isOpened)
   }
-
   useOnClickOutside(drpWrapper, () => setIsOpened(false))
 
   return (
@@ -31,7 +41,7 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
     >
       <div className="dropdown__top" onClick={() => toggleList()}>
         <span className="dropdown__top__label">
-          {selected ? options[selected] : placeholderText}
+          {currentSelected ? options[currentSelected] : placeholderText}
         </span>
         <div
           className={
@@ -39,7 +49,7 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
             (isOpened && 'rotatedTop')
           }
           style={{
-            backgroundImage: `url('/static/icons/chevron-down.svg')`,
+            backgroundImage: `url('/icons/chevron-down.svg')`,
           }}
         />
       </div>
@@ -48,8 +58,8 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
           {options.map((optionTitle, k) => (
             <li
               key={k}
-              onClick={() => changeSelect(k)}
-              className={k == selected ? 'active' : ''}
+              onClick={() => handleLiClick(k)}
+              className={k == currentSelected ? 'active' : ''}
             >
               {optionTitle}
             </li>

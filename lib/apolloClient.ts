@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-unfetch'
 
 import ApolloClient from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -9,7 +9,7 @@ import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 
-const { GRAPHQL_URL, AUTH_TOKEN } = process.env
+const { GRAPHQL_URL, AUTH_TOKEN = '' } = process.env
 
 //
 //
@@ -56,18 +56,19 @@ const apollo = new ApolloClient({
   resolvers: {
     //global apollo state resolvers
     Mutation: {
-      toggleTodo: (_, { isConnected }, { cache }) => {
-        // const fragment = gql`
-        //   fragment completeTodo on TodoItem {
-        //     completed
-        //   }
-        // `
-        // const todo = cache.readFragment({ fragment })
-        // const data = { ...todo, completed: isConnected }
-        cache.writeData({ data: '' })
+      changeSelected: (_, { toSelect }, { cache }) => {
+        console.log('toSelect', toSelect)
+        cache.writeData({ data: { currentSelected: toSelect } })
         return null
       },
     },
+  },
+})
+
+//default state
+cache.writeData({
+  data: {
+    currentSelected: null,
   },
 })
 

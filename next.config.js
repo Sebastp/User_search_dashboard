@@ -19,6 +19,7 @@ const configureWebpack = (config, { dev }) => {
 		})
   );
 	
+
 	
 	if (config.resolve.plugins) {
 		config.resolve.plugins.push(new TsconfigPathsPlugin());
@@ -53,7 +54,6 @@ const configureWebpack = (config, { dev }) => {
 
   return config;
 };
-
 
 module.exports = withSass(
 	withCSS(

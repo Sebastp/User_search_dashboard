@@ -1,0 +1,102 @@
+$searchInptBck: #14121a;
+
+.searchInput {
+  padding: 13px 20px 12px 20px;
+  padding: 0 20px 0 20px;
+  border-radius: 7px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.2s, color 0.17s;
+  box-shadow: 0 2px 7px rgba($blacks_1, 0.6);
+  background: $searchInptBck;
+  position: relative;
+  text-align: left;
+  display: flex;
+  cursor: text;
+  overflow: hidden;
+
+  &__placeholder {
+    position: absolute;
+    margin-right: 20px;
+    top: 13px;
+    color: rgba($grey_1, 0.95);
+    font-size: rem(15px);
+    user-select: none;
+    transition: opacity 0.2s, color 0.2s;
+    z-index: 0;
+    opacity: 1;
+  }
+
+  &__inpt {
+    color: rgba($white_1, 0.95);
+    letter-spacing: 0.008em;
+    font-size: rem(15px);
+    opacity: 0.5;
+    flex: 1;
+    transition: opacity 0.1s;
+    z-index: 1;
+    margin-right: 30px;
+    height: 43px;
+  }
+
+  &__icon {
+    display: inline-block;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    // margin-top: 1px;
+    margin-top: 14px;
+    right: 19px;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+
+  &:hover {
+    // border-color: rgba($grey_border, 0.45);
+    box-shadow:
+      inset 0 0 8px rgba($grey_border, 0.01),
+      0 0 8px rgba($grey_border, 0.06);
+    transition: border-color 0.2s, box-shadow 0.2s, color 0.25s;
+
+    .searchInput__placeholder {
+      color: $grey_1;
+    }
+  }
+
+  &:active {
+    background-color: darken($searchInptBck, 1);
+    transition: background-color 0.15s;
+
+    .searchInput__icon {
+      transition: opacity 0.2s;
+      opacity: 0.87;
+    }
+  }
+
+  &:focus-within {
+    transition: background-color 0.2s, box-shadow 0.2s;
+    background-color: darken($searchInptBck, 1.1);
+    box-shadow: 0 0 0 1px rgba($inputBck, 0.5);
+
+    .searchInput__placeholder {
+      color: rgba($grey_1, 0.8);
+      transition: color 0.5s;
+    }
+  }
+
+  &.withValue {
+    .searchInput__placeholder {
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .searchInput__inpt {
+      opacity: 1;
+      transition: opacity 0.14s;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .searchInput {
+    background: lighten($searchInptBck, 3);
+  }
+}
