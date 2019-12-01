@@ -3,8 +3,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 
 import { useOnClickOutside } from '~lib/useOnClickOutside'
 
-import { CHANGE_SELECTED } from '~graphqlM/users'
-import { GET_CURRENT_SELECTED } from '~graphqlQ/users'
+import { GET_CURRENT_SELECTED, CHANGE_SELECTED } from '~graphql/state'
 
 type DropdownProps = {
   placeholderText: string
@@ -31,6 +30,7 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
   const toggleList = () => {
     setIsOpened(!isOpened)
   }
+
   useOnClickOutside(drpWrapper, () => setIsOpened(false))
 
   return (

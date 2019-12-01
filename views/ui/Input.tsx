@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
+import { useMutation } from '@apollo/react-hooks'
+
+import { UPDATE_SEARCH_STRING } from '~graphql/state'
 
 type InptProps = {
   placeholderText: string
@@ -7,7 +10,11 @@ type InptProps = {
 
 const Input = ({ placeholderText }: InptProps) => {
   const inputEl = useRef(null)
+
   const [inputValue, setInputValue] = useState(false)
+
+  const [updateSearchString] = useMutation(UPDATE_SEARCH_STRING)
+
   const SearchIcon = styled.div`
     background-image: url(${'/icons/searchGrey.svg'});
     width: 16px;
@@ -15,6 +22,7 @@ const Input = ({ placeholderText }: InptProps) => {
   `
 
   const handleChange = ({ target }) => {
+    updateSearchString({ variables: { newString: target.value } }) //update global state
     setInputValue(target.value != '')
   }
 

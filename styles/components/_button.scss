@@ -7,18 +7,21 @@
   font-weight: $medium;
   padding: 13px 30px 12px 30px;
   border-radius: 7px;
-  transition: border-color 0.15s, box-shadow 0.15s, color 0.17s, transform 0.2s;
+  transition: box-shadow 0.35s, color 0.27s, background 0.3s;
   letter-spacing: 0.02em;
   background: linear-gradient(47deg, $brand_1, $brand_2);
 
-  &:hover {
+  &:hover:not(.disabled) {
     box-shadow: 0 0 10px rgba($white_1, 0.07);
     color: $white_1;
-    transition: border-color 0.2s, box-shadow 0.2s, color 0.25s, transform 0.25s;
+    transition: box-shadow 0.2s, color 0.25s;
   }
 
-  &:active {
-    transition: border-color 0.15s, transform 0.25s;
+  &.disabled {
+    color: rgba($grey_3, 0.9);
+    background: rgba($inputBck, 0.9);
+    cursor: default;
+    transition: color 0.35s, background 0.35s;
   }
 }
 

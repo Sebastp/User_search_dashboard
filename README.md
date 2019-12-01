@@ -18,3 +18,4 @@ npm run dev
 TODO;
 
 - TypeScript definitions for external packages
+- Page loading screen

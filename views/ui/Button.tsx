@@ -2,10 +2,13 @@ import React from 'react'
 
 interface BtnProps {
   children: string
+  disabled?: boolean
 }
 
-const Button = ({ children, ...props }: BtnProps) => (
-  <button className="boxButton">{children}</button>
+const Button = ({ children, disabled = true }: BtnProps) => (
+  <button className={'boxButton' + (disabled ? ' disabled' : '')}>
+    {children}
+  </button>
 )
 
 export default Button

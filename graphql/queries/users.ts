@@ -23,9 +23,3 @@ export const GET_USER = gql`
     }
   }
 `
-
-export const GET_CURRENT_SELECTED = gql`
-  query selectedOption {
-    currentSelected @client
-  }
-`

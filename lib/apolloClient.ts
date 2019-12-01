@@ -58,9 +58,12 @@ const apollo = new ApolloClient({
     //global apollo state resolvers
     Mutation: {
       changeSelected: (_, { toSelect }, { cache }) => {
-        console.log('toSelect', toSelect)
         cache.writeData({ data: { currentSelected: toSelect } })
         return null
+      },
+      updateSearchString: (_, { newString }, { cache }) => {
+        cache.writeData({ data: { searchString: newString } })
+        return newString
       },
     },
   },
@@ -70,6 +73,7 @@ const apollo = new ApolloClient({
 cache.writeData({
   data: {
     currentSelected: -1,
+    searchString: '',
   },
 })
 
