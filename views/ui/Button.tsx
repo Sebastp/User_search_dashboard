@@ -1,15 +1,11 @@
 import React from 'react'
 
-interface IProps {
-  loading: boolean
+interface BtnProps {
   children: string
 }
 
-const Button = ({ loading = false, children, ...props }: IProps) => (
-  <button {...props}>
-    {children}
-    {loading && <span>Loading</span>}
-  </button>
+const Button = ({ children, ...props }: BtnProps) => (
+  <button {...props}>{children}</button>
 )
 
 export default Button

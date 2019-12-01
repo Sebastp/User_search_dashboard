@@ -3,11 +3,17 @@ import fetch from 'node-fetch'
 import ApolloClient from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
+//apollo link related
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
 
 const { GRAPHQL_URL } = process.env
+
+//
+//
+//
+//
 
 const httpLink = new HttpLink({
   uri: GRAPHQL_URL,
@@ -15,6 +21,7 @@ const httpLink = new HttpLink({
   credentials: 'same-origin',
 })
 
+//handling apollo errors
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
@@ -27,6 +34,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 const link = ApolloLink.from([errorLink, httpLink])
+
 const cache = new InMemoryCache()
 
 const apollo = new ApolloClient({
@@ -34,6 +42,7 @@ const apollo = new ApolloClient({
   link,
   cache,
   resolvers: {
+    //global apollo state resolvers
     Mutation: {
       toggleTodo: (_, { isConnected }, { cache }) => {
         // const fragment = gql`
