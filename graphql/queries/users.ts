@@ -15,10 +15,11 @@ export const SEARCH_USERS = gql`
 `
 
 export const GET_USER = gql`
-query GetUser($login: String!) {
-  user(login: $login) {
-    name
-    bio
-    websiteUrl
+  query GetUser($login: String!) {
+    user(login: $login) {
+      name
+      bio
+      websiteUrl
+    }
   }
 `

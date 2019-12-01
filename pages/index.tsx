@@ -1,18 +1,25 @@
 import React from 'react'
-import Head from 'next/head'
-import { useMutation } from '@apollo/react-hooks'
+
+import MainLayout from '~views/layouts/Main'
+
+import { useMutation, useQuery } from '@apollo/react-hooks'
 
 import { SEARCH_USERS } from '~graphqlM/users'
+import { GET_USER } from '~graphqlQ/users'
 
 const Home = () => {
   const [toggleTodo] = useMutation(SEARCH_USERS, { variables: { id: 2 } })
+  const { loading, error, data }: any = useQuery(GET_USER, {
+    variables: { login: 'gaearon' },
+  })
+
+  if (error) console.log(error)
+  if (loading) return <p>Loading ...</p>
+  console.log(data)
   return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </div>
+    <MainLayout title={`Home Page`}>
+      <div></div>
+    </MainLayout>
   )
 }
 

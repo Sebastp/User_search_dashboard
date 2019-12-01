@@ -7,8 +7,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
 
-const { GRAPHQL_URL } = process.env
+const { GRAPHQL_URL, AUTH_TOKEN } = process.env
 
 //
 //
@@ -33,7 +34,18 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`)
 })
 
-const link = ApolloLink.from([errorLink, httpLink])
+//auth access to github api
+const authLink = setContext((_, { headers }) => {
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: AUTH_TOKEN ? `Bearer ${AUTH_TOKEN}` : '',
+    },
+  }
+})
+
+const link = ApolloLink.from([errorLink, authLink, httpLink])
 
 const cache = new InMemoryCache()
 
