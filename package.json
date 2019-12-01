@@ -29,6 +29,7 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "autoprefixer": "^9.7.3",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
     "enzyme": "^3.10.0",
     "graphql": "^14.5.8",

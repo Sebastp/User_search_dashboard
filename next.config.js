@@ -51,14 +51,20 @@ const configureWebpack = (config, { dev }) => {
 			loader: 'eslint-loader',
 		})
 	}
+	
 
   return config;
 };
 
 module.exports = withSass(
 	withCSS(
-		withImages({
-			webpack: configureWebpack
-		})
+		withImages(
+				{
+				devIndicators: {//hides dev icon
+					autoPrerender: false,
+				},
+				webpack: configureWebpack
+			}
+		)
 	)
 )
