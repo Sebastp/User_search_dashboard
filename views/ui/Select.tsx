@@ -20,7 +20,6 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
     drpWrapper = useRef()
 
   const handleLiClick = (toSelect: number) => {
-    console.log(currentSelected)
     if (currentSelected != toSelect) {
       changeSelected({
         variables: { toSelect },
@@ -38,10 +37,11 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
     <div
       className={'dropdownWrapper ' + (isOpened && 'opened')}
       ref={drpWrapper}
+      onClick={() => toggleList()}
     >
-      <div className="dropdown__top" onClick={() => toggleList()}>
+      <div className="dropdown__top">
         <span className="dropdown__top__label">
-          {currentSelected ? options[currentSelected] : placeholderText}
+          {currentSelected > -1 ? options[currentSelected] : placeholderText}
         </span>
         <div
           className={

@@ -30,7 +30,6 @@ const Home = () => {
           <div className="top__header">
             <h1 className="header--medium">Search Dashboard</h1>
             <div className="top__header__select">
-              <span>Search By</span>
               <Select placeholderText="Search by" options={selectOptions} />
             </div>
           </div>

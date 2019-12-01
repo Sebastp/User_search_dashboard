@@ -14,7 +14,7 @@ const MainLayout: React.FC<IProps> = ({
   keywords,
   children,
 }) => (
-  <div>
+  <>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -26,7 +26,7 @@ const MainLayout: React.FC<IProps> = ({
       {keywords && <meta name="keywords" content={keywords.join(', ')} />}
     </Head>
     {children}
-  </div>
+  </>
 )
 
 export default MainLayout

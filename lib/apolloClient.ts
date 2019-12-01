@@ -9,7 +9,9 @@ import { onError } from 'apollo-link-error'
 import { HttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 
-const { GRAPHQL_URL, AUTH_TOKEN = '' } = process.env
+// const { GRAPHQL_URL, AUTH_TOKEN = '' } = process.env
+const AUTH_TOKEN = 'df84d5139d8e14a441552d6a033e7564482c68e3'
+const GRAPHQL_URL = 'https://api.github.com/graphql'
 
 //
 //
@@ -68,7 +70,7 @@ const apollo = new ApolloClient({
 //default state
 cache.writeData({
   data: {
-    currentSelected: null,
+    currentSelected: -1,
   },
 })
 

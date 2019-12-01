@@ -1,7 +1,6 @@
 $searchInptBck: #14121a;
 
 .searchInput {
-  padding: 13px 20px 12px 20px;
   padding: 0 20px 0 20px;
   border-radius: 7px;
   transition: border-color 0.15s, background 0.15s, box-shadow 0.2s, color 0.17s;
@@ -53,21 +52,11 @@ $searchInptBck: #14121a;
     // border-color: rgba($grey_border, 0.45);
     box-shadow:
       inset 0 0 8px rgba($grey_border, 0.01),
-      0 0 8px rgba($grey_border, 0.06);
+      0 0 8px rgba($grey_border, 0.04);
     transition: border-color 0.2s, box-shadow 0.2s, color 0.25s;
 
     .searchInput__placeholder {
       color: $grey_1;
-    }
-  }
-
-  &:active {
-    background-color: darken($searchInptBck, 1);
-    transition: background-color 0.15s;
-
-    .searchInput__icon {
-      transition: opacity 0.2s;
-      opacity: 0.87;
     }
   }
 
@@ -79,6 +68,16 @@ $searchInptBck: #14121a;
     .searchInput__placeholder {
       color: rgba($grey_1, 0.8);
       transition: color 0.5s;
+    }
+  }
+
+  &:active {
+    background-color: darken($searchInptBck, 0.8);
+    transition: background-color 0.15s;
+
+    .searchInput__icon {
+      transition: opacity 0.2s;
+      opacity: 0.87;
     }
   }
 

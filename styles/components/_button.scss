@@ -1,13 +1,14 @@
 .boxButton {
   font-family: $poppins;
-  font-size: rem(16px);
+  font-size: rem(13px);
+  text-transform: uppercase;
   cursor: pointer;
-  color: $white_1;
-  font-weight: $semi-bold;
-  padding: 7px 23px 7px 23px;
+  color: rgba($white_1, 0.9);
+  font-weight: $medium;
+  padding: 13px 30px 12px 30px;
   border-radius: 7px;
   transition: border-color 0.15s, box-shadow 0.15s, color 0.17s, transform 0.2s;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   background: linear-gradient(47deg, $brand_1, $brand_2);
 
   &:hover {
@@ -18,5 +19,54 @@
 
   &:active {
     transition: border-color 0.15s, transform 0.25s;
+  }
+}
+
+@mixin iconOnHover {
+  transition: opacity 0.3s, transform 0.25s;
+  opacity: 0.75;
+}
+
+@mixin iconOnActive {
+  opacity: 0.9;
+  transition: opacity 0.15;
+}
+
+.arrowBtn {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  height: 12px;
+  width: 7px;
+  box-sizing: border-box;
+  opacity: 0.45;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &__horizontal {
+    @extend .arrowBtn;
+
+    height: 6px;
+    width: 13px;
+    transition: transform 0.2s;
+
+    &.rotatedTop {
+      transition: transform 0.25s;
+      transform: translateY(-20%) rotate(180deg);
+    }
+  }
+
+  &:hover:not(.disabled) {
+    @include iconOnHover;
+  }
+
+  &:active:not(.disabled) {
+    @include iconOnActive;
+  }
+
+  &.disabled {
+    cursor: default;
+    opacity: 0.16;
   }
 }

@@ -5,7 +5,7 @@ interface BtnProps {
 }
 
 const Button = ({ children, ...props }: BtnProps) => (
-  <button {...props}>{children}</button>
+  <button className="boxButton">{children}</button>
 )
 
 export default Button
