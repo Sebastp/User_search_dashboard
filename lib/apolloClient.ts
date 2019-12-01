@@ -33,6 +33,21 @@ const apollo = new ApolloClient({
   ssrMode: true,
   link,
   cache,
+  resolvers: {
+    Mutation: {
+      toggleTodo: (_, { isConnected }, { cache }) => {
+        // const fragment = gql`
+        //   fragment completeTodo on TodoItem {
+        //     completed
+        //   }
+        // `
+        // const todo = cache.readFragment({ fragment })
+        // const data = { ...todo, completed: isConnected }
+        cache.writeData({ data: '' })
+        return null
+      },
+    },
+  },
 })
 
 export default apollo
