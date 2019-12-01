@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-@import 'vendors/rem';
+@import 'vendors/rem'; //helper for converting px to rem
 
 // Base stuff
 @import 'base/variables', 'base/base', 'base/fonts';

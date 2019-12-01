@@ -56,15 +56,14 @@
   .dropdown__panel {
     position: absolute;
     z-index: 10;
-    opacity: 0;
     box-sizing: border-box;
     background-color: $inputBck;
     padding: 15px 20px 17px 20px;
     border-radius: 4px;
     width: 100%;
-    bottom: -9px;
     right: 0;
-    transform: translateY(100%);
+    top: 28px;
+    display: none;
     transition: bottom 0.2s, opacity 0.25s;
     box-shadow: 1px 3px 6px 0 rgba($black, 0.1);
 
@@ -97,9 +96,7 @@
 
   &.opened {
     .dropdown__panel {
-      bottom: -11px;
-      opacity: 1;
-      transition: bottom 0.2s, opacity 0.25s;
+      display: block;
     }
   }
 }

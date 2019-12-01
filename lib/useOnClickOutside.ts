@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 
-//react hook for checking if clicked outside @param ref
-// @param = funct runed if clicked outside @param ref
+/**
+ * react hook for checking if clicked outside
+ * @param {string} ref - ref elem to watch
+ * @param {string} handler - funct runed if clicked outside @param ref
+ */
 export const useOnClickOutside = (ref, handler) => {
   useEffect(
     () => {

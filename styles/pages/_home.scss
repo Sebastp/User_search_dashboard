@@ -12,6 +12,10 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 35px;
+
+    &__select {
+      margin-right: -1px;
+    }
   }
 
   &__inputs {

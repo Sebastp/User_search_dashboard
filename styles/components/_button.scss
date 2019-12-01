@@ -1,14 +1,7 @@
 .boxButton {
   font-family: $poppins;
-  font-size: rem(13px);
-  text-transform: uppercase;
-  cursor: pointer;
   color: rgba($white_1, 0.9);
   font-weight: $medium;
-  padding: 13px 30px 12px 30px;
-  border-radius: 7px;
-  transition: box-shadow 0.35s, color 0.27s, background 0.3s;
-  letter-spacing: 0.02em;
   background: linear-gradient(47deg, $brand_1, $brand_2);
 
   &:hover:not(.disabled) {

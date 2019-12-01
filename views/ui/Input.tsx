@@ -1,28 +1,47 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
-import { useMutation } from '@apollo/react-hooks'
 
-import { UPDATE_SEARCH_STRING } from '~graphql/state'
+//STYLED COMPONENTS
+const SearchIcon = styled.div`
+  background-image: url(${'/icons/searchGrey.svg'});
+  width: 16px;
+  height: 16px;
+  margin-top: 14px;
+  right: 19px;
+  display: inline-block;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+`
+
+const Placeholder = styled.span`
+  position: absolute;
+  margin-right: 20px;
+  top: 13px;
+  color: #6a6776;
+  font-size: 15px;
+  user-select: none;
+  transition: opacity 0.2s, color 0.2s;
+  z-index: 0;
+  opacity: 1;
+`
 
 type InptProps = {
   placeholderText: string
+  onChangeFunct?: Function
 }
 
-const Input = ({ placeholderText }: InptProps) => {
+const Input = ({ placeholderText, onChangeFunct }: InptProps) => {
   const inputEl = useRef(null)
 
   const [inputValue, setInputValue] = useState(false)
 
-  const [updateSearchString] = useMutation(UPDATE_SEARCH_STRING)
-
-  const SearchIcon = styled.div`
-    background-image: url(${'/icons/searchGrey.svg'});
-    width: 16px;
-    height: 16px;
-  `
-
   const handleChange = ({ target }) => {
-    updateSearchString({ variables: { newString: target.value } }) //update global state
+    if (onChangeFunct) {
+      onChangeFunct(target.value)
+    }
     setInputValue(target.value != '')
   }
 
@@ -45,7 +64,9 @@ const Input = ({ placeholderText }: InptProps) => {
           autoComplete="off"
           onChange={e => handleChange(e)}
         />
-        <span className="searchInput__placeholder">{placeholderText}</span>
+        <Placeholder className="searchInput__placeholder">
+          {placeholderText}
+        </Placeholder>
       </div>
     </div>
   )

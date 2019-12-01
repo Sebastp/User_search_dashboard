@@ -36,15 +36,13 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 //auth access to github api
-const authLink = setContext((_, { headers }) => {
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: AUTH_TOKEN ? `Bearer ${AUTH_TOKEN}` : '',
-    },
-  }
-})
+// return the headers to the context so httpLink can read them
+const authLink = setContext((_, { headers }) => ({
+  headers: {
+    ...headers,
+    authorization: AUTH_TOKEN ? `Bearer ${AUTH_TOKEN}` : '',
+  },
+}))
 
 const link = ApolloLink.from([errorLink, authLink, httpLink])
 
@@ -69,7 +67,7 @@ const apollo = new ApolloClient({
   },
 })
 
-//default state
+//default apollo state
 cache.writeData({
   data: {
     currentSelected: -1,

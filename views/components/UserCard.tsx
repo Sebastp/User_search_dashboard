@@ -1,5 +1,12 @@
 import React from 'react'
 
-const UserCard = () => <li></li>
+interface ListProps {
+  userObject?: any
+}
+
+const UserCard = ({ userObject }: ListProps) => {
+  const { login } = userObject
+  return <li>{login}</li>
+}
 
 export default UserCard
