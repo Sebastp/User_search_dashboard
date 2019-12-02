@@ -9,15 +9,17 @@
 </p>
 
 ## How to use
+
 - create .env file in the root path.
 - add following variables; <br>
-GRAPHQL_URL=https://api.github.com/graphql <br>
-AUTH_TOKEN=([value of your github access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line))
+  GRAPHQL_URL=https://api.github.com/graphql <br>
+  AUTH_TOKEN=([value of your github access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line))
 
 ```javascript
 npm i
 npm run dev
 ```
+
 - Open [localhost](http://localhost:3000/)
 
 <br>
@@ -27,3 +29,4 @@ TODO;
 - Page loading screen
 - Pagination
 - Error handling
+- Refactor Select component(uses CHANGE_SELECTED, GET_CURRENT_SELECTED as default should be pased as prop)
