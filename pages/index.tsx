@@ -7,13 +7,13 @@ import MainLayout from '~viewsLay/Main'
 import UsersList from '~viewsComp/UsersList'
 
 //UI COMPONENTS
-import Select from '~viewsUi/Select'
 import Button from '~viewsUi/Button'
+import ErrorMsg from '~viewsUi/ErrorMsg'
 import Input from '~viewsUi/Input'
+import Select from '~viewsUi/Select'
 
 //HELPERS
 import { validateQuery } from '~lib/validation'
-import { useForceUpdate } from '~lib/useForceUpdate'
 
 import { GET_WHOLE_STATE, UPDATE_SEARCH_STRING } from '~graphql/state'
 
@@ -22,16 +22,14 @@ const Home = () => {
   const [phraseToSearch, setPhraseToSearch] = useState('')
   const [updateSearchString] = useMutation(UPDATE_SEARCH_STRING)
   const { data: stateData } = useQuery(GET_WHOLE_STATE)
-  const queryValid = validateQuery(
-      stateData.searchString,
-      selectOptions[stateData.currentSelected]
-    ),
-    forceUpdate = useForceUpdate() //using hook inside funct body
+  const { valid: queryValid, message: queryError } = validateQuery(
+    stateData.searchString,
+    selectOptions[stateData.currentSelected]
+  )
 
   const handleInputChange = (inputValue: string) => {
     updateSearchString({ variables: { newString: inputValue } }) //update global state
   }
-
   const handleSearch = () => {
     setPhraseToSearch(stateData.searchString)
   }
@@ -40,14 +38,14 @@ const Home = () => {
     <MainLayout title={`Home Page`}>
       <div className="mainCont home">
         <div className="home__top">
-          <div className="top__header">
+          <div className="home__top__header">
             <h1 className="header--medium">Search Dashboard</h1>
-            <div className="top__header__select">
+            <div className="home__top__header__select">
               <Select placeholderText="Search by" options={selectOptions} />
             </div>
           </div>
 
-          <div className="top__inputs">
+          <div className="home__top__inputs">
             <Input
               placeholderText={'Search for...'}
               onChangeFunct={e => handleInputChange(e)}
@@ -59,6 +57,7 @@ const Home = () => {
               Search
             </Button>
           </div>
+          <ErrorMsg>{queryError && queryError}</ErrorMsg>
         </div>
 
         <div className="home__main">

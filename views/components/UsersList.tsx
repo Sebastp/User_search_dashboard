@@ -20,7 +20,6 @@ const UsersList = ({ phraseToSearch }: ListProps) => {
     //nasted deconstructing
     let { search } = data
     searchData = search.edges.map(a => a.node)
-    console.log(searchData)
   }
 
   if (!phraseToSearch.length) {

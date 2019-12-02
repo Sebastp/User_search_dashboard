@@ -10,27 +10,59 @@ export const validateEmail = (email: string | number): boolean => {
   return re.test(email)
 }
 
+interface validationInterface {
+  valid: boolean
+  message: string | void
+}
+
 /**
  * @param {string} value - string to check
  * @param {string} type - type of validation
  * @return {boolean} if string = valid
  */
-export const validateQuery = (value: string, type: string | void): boolean => {
+export const validateQuery = (
+  value: string,
+  type: string | void
+): validationInterface => {
+  let valid = true,
+    message
+
   if (!type) {
-    return false
+    valid = false
+  } else {
+    switch (type) {
+      case 'login':
+        if (value.length < 2) {
+          //if lenght shorter than 3
+          valid = false
+          message = 'Login is too short'
+        }
+        break
+      case 'name':
+        if (value.length < 2) {
+          //if lenght shorter than 3
+          valid = false
+          message = 'Name is too short'
+        } else if (/\d/.test(value)) {
+          //if contains num
+          valid = false
+          message = 'Name should not contain numbers'
+        }
+        break
+      case 'email':
+        if (!validateEmail(value)) {
+          //if not valid email
+          valid = false
+          message = 'Email is not valid'
+        }
+        break
+      default:
+        valid = false
+    }
   }
 
-  switch (type) {
-    case 'login':
-      return value.length > 2 //if lenght more than 2
-      break
-    case 'name':
-      return value.length > 2 && !/\d/.test(value) //if contains num and lenght more than 2
-      break
-    case 'email':
-      return validateEmail(value)
-      break
-    default:
-      return false
+  return {
+    valid,
+    message,
   }
 }
