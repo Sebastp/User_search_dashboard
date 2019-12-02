@@ -20,3 +20,4 @@ TODO;
 - TypeScript definitions for external packages
 - Page loading screen
 - Pagination
+- Error handling

@@ -38,8 +38,8 @@ const Home = () => {
 
   return (
     <MainLayout title={`Home Page`}>
-      <div className="mainCont">
-        <div className="top">
+      <div className="mainCont home">
+        <div className="home__top">
           <div className="top__header">
             <h1 className="header--medium">Search Dashboard</h1>
             <div className="top__header__select">
@@ -61,7 +61,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="main">
+        <div className="home__main">
           <UsersList phraseToSearch={phraseToSearch} />
         </div>
       </div>

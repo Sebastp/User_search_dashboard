@@ -34,7 +34,7 @@ const UsersList = ({ phraseToSearch }: ListProps) => {
     <ul>
       {searchData.length ? (
         searchData.map((userObj, i) => (
-          <UserCard key={i} userObject={userObj} />
+          <UserCard key={phraseToSearch + i} userObject={userObj} />
         ))
       ) : (
         <p>Nothing found</p>
