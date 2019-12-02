@@ -14,8 +14,9 @@ const UsersList = ({ phraseToSearch }: ListProps) => {
   const { loading, error, data }: any = useQuery(SEARCH_USERS, {
     variables: { query: phraseToSearch },
   })
-  if (error) console.log(error)
   let searchData = []
+
+  if (error) console.log(error)
   if (data) {
     //nasted deconstructing
     let { search } = data

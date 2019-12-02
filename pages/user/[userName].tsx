@@ -10,15 +10,17 @@ import PropBlock from '~viewsComp/PropBlock'
 import { GET_USER } from '~graphqlQ/users'
 
 const UserPage = () => {
-  const router = useRouter()
-  const { userName } = router.query
-  const { loading, error, data }: any = useQuery(GET_USER, {
-    variables: { login: userName },
-  })
+  const router = useRouter(),
+    { userName } = router.query,
+    { loading, error, data }: any = useQuery(GET_USER, {
+      variables: { login: userName },
+    })
+
   if (error) console.log(error)
   if (loading) {
     return <p>Loading</p>
   }
+
   const { user } = data,
     { websiteUrl: userWebsiteUrl, bio: userBio } = user
 

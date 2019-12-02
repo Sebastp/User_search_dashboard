@@ -37,3 +37,31 @@
     text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .home__top {
+    &__header {
+      flex-direction: column;
+      align-items: center;
+
+      &__select {
+        margin-top: 20px;
+      }
+    }
+
+    &__inputs {
+      flex-direction: column;
+      align-items: center;
+
+      .inputWrapper {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 22px;
+      }
+
+      .boxButton {
+        max-width: 120px;
+      }
+    }
+  }
+}

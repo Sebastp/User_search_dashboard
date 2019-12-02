@@ -1,7 +1,7 @@
 import React from 'react'
-
 import styled from 'styled-components'
 
+//STYLES
 const BlockWrapper = styled.div`
   font-size: 15px;
   text-align: center;
@@ -28,6 +28,10 @@ const BlockValue = styled.p`
   letter-spacing: 0.02em;
   text-align: center;
 `
+
+//
+//
+//
 
 interface BlockProperties {
   blockName: string

@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-
 import styled, { keyframes } from 'styled-components'
 
+//STYLES
 const keyFrameFadeIn = keyframes`
 0% {
   opacity: 0;

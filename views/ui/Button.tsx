@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+//STYLES
 const BoxButton = styled.button`
   font-size: 13px;
   text-transform: uppercase;

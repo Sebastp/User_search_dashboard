@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 
+//HELPERS
 import { useOnClickOutside } from '~lib/useOnClickOutside'
 
 import { GET_CURRENT_SELECTED, CHANGE_SELECTED } from '~graphql/state'
@@ -18,6 +19,8 @@ const Select = ({ options = [''], placeholderText = '' }: DropdownProps) => {
     } = useQuery(GET_CURRENT_SELECTED),
     drpWrapper = useRef()
 
+  //
+  //FUNCTIONS
   const handleLiClick = (toSelect: number) => {
     if (currentSelected != toSelect) {
       changeSelected({

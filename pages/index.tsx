@@ -18,15 +18,16 @@ import { validateQuery } from '~lib/validation'
 import { GET_WHOLE_STATE, UPDATE_SEARCH_STRING } from '~graphql/state'
 
 const Home = () => {
-  const selectOptions = ['login', 'name', 'email']
-  const [phraseToSearch, setPhraseToSearch] = useState('')
-  const [updateSearchString] = useMutation(UPDATE_SEARCH_STRING)
-  const { data: stateData } = useQuery(GET_WHOLE_STATE)
-  const { valid: queryValid, message: queryError } = validateQuery(
-    stateData.searchString,
-    selectOptions[stateData.currentSelected]
-  )
+  const selectOptions = ['login', 'name', 'email'],
+    [phraseToSearch, setPhraseToSearch] = useState(''),
+    [updateSearchString] = useMutation(UPDATE_SEARCH_STRING),
+    { data: stateData } = useQuery(GET_WHOLE_STATE),
+    { valid: queryValid, message: queryError } = validateQuery(
+      stateData.searchString,
+      selectOptions[stateData.currentSelected]
+    )
 
+  //FUNCTIONS
   const handleInputChange = (inputValue: string) => {
     updateSearchString({ variables: { newString: inputValue } }) //update global state
   }

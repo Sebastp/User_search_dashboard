@@ -34,14 +34,12 @@ type InptProps = {
 }
 
 const Input = ({ placeholderText, onChangeFunct }: InptProps) => {
-  const inputEl = useRef(null)
+  const inputEl = useRef(null),
+    [inputValue, setInputValue] = useState(false)
 
-  const [inputValue, setInputValue] = useState(false)
-
+  //FUNCTIONS
   const handleChange = ({ target }) => {
-    if (onChangeFunct) {
-      onChangeFunct(target.value)
-    }
+    if (onChangeFunct) onChangeFunct(target.value)
     setInputValue(target.value != '')
   }
 
