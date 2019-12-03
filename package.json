@@ -9,7 +9,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest --no-cache",
+    "test": "jest",
     "test:watch": "jest --watch",
     "eslint:fix": "eslint . --fix --ignore-path .gitignore"
   },

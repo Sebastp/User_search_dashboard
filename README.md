@@ -25,6 +25,7 @@ npm run dev
 <br>
 TODO;
 
+- Tests
 - TypeScript definitions for external packages
 - Page loading screen
 - Pagination
